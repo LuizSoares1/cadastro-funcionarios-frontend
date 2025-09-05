@@ -1,0 +1,25 @@
+<main class="dash-centralizado">
+    <header class="dashboard-header">
+        <div class="dashboard-title">
+            <span>
+                Bem-vindo {{ usuarioLogado()?.username}}!
+            </span>
+        </div>
+        <div class="btn-sair-div">
+            <button class="btn-sair" (click)="navegarPara('/login')">Sair</button>
+        </div>
+    </header>
+    <section class="dashboard-section">
+        <div class="dashboard-container">
+            <div class="dashboard-subtittle-div">
+                <p class="dashboard-subtitle">Escolha uma das opções abaixo:</p>
+            </div>
+            <div class="menu-opcoes-div">
+                <nav class="menu-opcoes">
+                    <a class="menu-link" (click)="navegarPara('/funcionarios/cadastro')">Cadastrar Funcionário</a>
+                    <a class="menu-link" (click)="navegarPara('/funcionarios/lista')">Listar Funcionários</a>
+                </nav>
+            </div>
+        </div>
+    </section>
+</main>

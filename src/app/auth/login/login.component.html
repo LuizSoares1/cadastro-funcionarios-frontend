@@ -1,0 +1,37 @@
+<main class="centralizado">
+    <div class="login-container">
+        <div class="login-title">
+            <h2>Login</h2>
+        </div>
+        <form (ngSubmit)="realizarLogin()">
+            <div class="userpass-labelinput">
+                <div class="login-label">
+                    <label class="label-text" for="username">Usuário:</label>
+                </div>
+                <div class="input-text">
+                    <input type="text" [(ngModel)]="usuario" name="usuario" required />
+                </div>
+            </div>
+            <div class="userpass-labelinput">
+                <div class="login-label">
+                    <label class="label-text" for="username">Senha:</label>
+                </div>
+                <div class="input-text">
+                    <input type="password" [(ngModel)]="senha" name="senha" required />
+                </div>
+            </div>
+            <div class="userpass-btn">
+            <button type="submit" class="btn-login" [disabled]="loading">
+                @if (!loading) {
+                Entrar
+                } @else {
+                <span class="spinner"></span> Carregando...
+                }
+            </button>
+            </div>
+            <div class="login-error" [hidden]="!erro">
+                {{ erro }}
+            </div>
+        </form>
+    </div>
+</main>

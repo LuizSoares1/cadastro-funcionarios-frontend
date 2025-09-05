@@ -1,0 +1,141 @@
+<main class="centralizado">
+    <section class="cadastro-container">
+        <button class="btn-voltar" (click)="btnVoltar()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.336 63.336" width="12" height="12" aria-hidden="true">
+                <path d="M14.924,34.879l30.822,27.938c0.383,0.348,0.864,0.519,1.344,0.519
+                        c0.545,0,1.087-0.222,1.482-0.657c0.741-0.818,0.68-2.083-0.139-2.824
+                        l-29.642-26.87L45.66,3.342c0.742-0.818,0.68-2.083-0.139-2.824
+                        c-0.817-0.742-2.082-0.679-2.824,0.139L14.758,31.48
+                        c-0.439,0.485-0.59,1.126-0.475,1.723
+                        C14.224,33.811,14.436,34.438,14.924,34.879z"/>
+            </svg>
+            Voltar
+        </button>
+        <div class="cadastro-title">
+            <h2>Cadastro de Funcionário</h2>
+        </div>
+        <form (ngSubmit)="cadastrarFuncionario()">
+            <div class="form-switch">
+                <input type="checkbox" id="ativo" [(ngModel)]="funcionario().ativo" name="ativo" />
+                <label for="ativo">Funcionário ativo</label>
+            </div>
+            <div class="form-group">
+                <div class="form-group-label-div">
+                    <label class="form-group-label">Nome:</label>
+                </div>
+                <div class="form-group-input-div">
+                    <input class="form-group-input" type="text" [(ngModel)]="funcionario().nome" name="nome" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group-label-div">
+                    <label class="form-group-label">Email:</label>
+                </div>
+                <div class="form-group-input-div">
+                    <input class="form-group-input" type="text" [(ngModel)]="funcionario().email" name="email" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group-label-div">
+                    <label class="form-group-label">Data de Contratação:</label>
+                </div>
+                <div class="form-group-input-div">
+                    <input class="form-group-input" type="date" [(ngModel)]="funcionario().dataContratacao"
+                        name="dataContratacao" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group-label-div">
+                    <label class="form-group-label">CPF:</label>
+                </div>
+                <div class="form-group-input-div">
+                    <input class="form-group-input" type="text" [(ngModel)]="funcionario().cpf" mask="000.000.000-00"
+                        name="cpf" />
+                </div>
+            </div>
+            <fieldset class="form-group-endereco">
+                <div class="form-group-endereco-legend-div">
+                    <legend class="form-group-endereco-legend">Endereço</legend>
+                </div>
+                <div class="form-group-endereco-div">
+                    <div class="form-group-endereco-row">
+                        <div class="form-group-label-div">
+                            <label class="form-group-label">Rua:</label>
+                        </div>
+                        <div class="form-group-input-div">
+                            <input class="form-group-input" type="text" [(ngModel)]="funcionario().endereco.rua"
+                                name="rua" required />
+                        </div>
+                    </div>
+                    <div class="form-group-endereco-row">
+                        <div class="form-group-label-div">
+                            <label class="form-group-label">CEP:</label>
+                        </div>
+                        <div class="form-group-input-div">
+                            <input class="form-group-input" type="text" [(ngModel)]="funcionario().endereco.cep"
+                                mask="00000-000" name="cep" (blur)="buscarEndereco()" required />
+                        </div>
+                    </div>
+                    <div class="form-group-endereco-row">
+                        <div class="form-group-label-div">
+                            <label class="form-group-label">Bairro:</label>
+                        </div>
+                        <div class="form-group-input-div">
+                            <input class="form-group-input" type="text" [(ngModel)]="funcionario().endereco.bairro"
+                                name="bairro" required />
+                        </div>
+                    </div>
+                    <div class="form-group-endereco-row">
+                        <div class="form-group-label-div">
+                            <label class="form-group-label">Cidade:</label>
+                        </div>
+                        <div class="form-group-input-div">
+                            <input class="form-group-input" type="text" [(ngModel)]="funcionario().endereco.cidade"
+                                name="cidade" required />
+                        </div>
+                    </div>
+                    <div class="form-group-endereco-row">
+                        <div class="form-group-label-div">
+                            <label class="form-group-label">Estado:</label>
+                        </div>
+                        <div class="form-group-input-div">
+                            <input class="form-group-input" type="text" [(ngModel)]="funcionario().endereco.estado"
+                                name="estado" required />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <div class="form-group-label-div">
+                    <label class="form-group-label">Foto:</label>
+                </div>
+                <div class="form-group-input-div">
+                    <input class="form-group-input file-input" type="file" (change)="arquivoFoto($event)" />
+                </div>
+            </div>
+            @if(temFoto() || loadingFoto){
+            <div class="form-group">
+                <div class="form-group-label-div">
+                    <label class="form-group-label">Pre-visualização:</label>
+                </div>
+                <div class="form-group-img-div">
+                    @if (loadingFoto) {
+                        <div class="spinner spinner--lg"></div>
+                    } @else {
+                        <img class="foto-preview" [src]="funcionario().foto" draggable="false"/>
+                    }
+                </div>
+            </div>
+            }
+            <div class="form-group-btn">
+                <button class="btn-cadastrar" type="submit">
+                    @if (!loading) {
+                        Cadastrar Funcionário
+                    } @else {
+                    <span class="spinner spinner--sm"></span> Cadastrando...
+                    }
+                </button>
+            </div>
+        </form>
+    </section>
+</main>
