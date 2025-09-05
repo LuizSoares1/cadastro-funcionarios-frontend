@@ -27,7 +27,7 @@ export class LoginComponent {
     senha: string = ''
     erro: string = ''
     loading: boolean = false
-    Title = 'Login - Sistema de Cadastro de Funcionários'
+    Title: string = 'Login - Sistema de Cadastro de Funcionários'
 
     // Função para setar o título na Aba.
     ngOnInit(): void {

@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit{
   ) {}
 
   // Titulo da aba
-  Title = 'Dashboard - Sistema de Cadastro de Funcionários'
+  Title: string = 'Dashboard - Sistema de Cadastro de Funcionários'
 
   // Função utilizada para setar o título da aba e carregar o nome do usuário logado na header.
   ngOnInit(): void {
