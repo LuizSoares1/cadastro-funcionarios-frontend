@@ -24,7 +24,8 @@ export class ListaComponent implements OnInit {
     funcionarios = signal<Funcionario[]>([])
     Title: string = 'Lista - Sistema de Cadastro de Funcionários'
     loading: boolean = false
-    temFoto: boolean = false
+    // caso venha futuramente dar mais problemas, utilizarei método para verificar se há foto ou não
+    // temFoto: boolean = false
 
     // Função utilizada para seta o título da aba e também chamar a função de carregar a lista de usuários
     ngOnInit(): void {
