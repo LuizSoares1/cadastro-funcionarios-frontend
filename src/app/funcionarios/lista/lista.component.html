@@ -40,8 +40,9 @@
                             <span class="status-bolinha" [class.ativo]="f.ativo" [class.inativo]="!f.ativo">
                             </span>
                         <td>
-                            <img class="list-table-body-row-foto" [src]="f.foto" alt="Foto do Funcionário"
-                                draggable="false">
+                            @if(f.foto) {
+                                <img class="list-table-body-row-foto" [src]="f.foto" alt="Foto do Funcionário" draggable="false">
+                            }
                         </td>
                         <td>{{ f.nome }}</td>
                         <td>{{ f.email }}</td>
